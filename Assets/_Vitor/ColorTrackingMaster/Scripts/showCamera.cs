@@ -20,7 +20,7 @@ public class showCamera : MonoBehaviour {
             print("Webcam available: " + devices[i].name);
         }
 
-        webcamTexture = new WebCamTexture(devices[0].name);
+        webcamTexture = new WebCamTexture(devices[0].name, 300, 200);
         rawimage.texture = webcamTexture;
         rawimage.material.mainTexture = webcamTexture;
         webcamTexture.Play();
