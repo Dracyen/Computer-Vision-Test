@@ -13,6 +13,8 @@ public class greenSeeker : MonoBehaviour
     public int greenThreshold = 25;
     public int otherThreshold = 35;
 
+    public strafe _moveplayer;
+
     int avgGreenx = 0;
     int avgGreeny = 0;
 
@@ -29,7 +31,7 @@ public class greenSeeker : MonoBehaviour
 
         webcamTexture = new WebCamTexture(devices[0].name, 300, 200);
         rawimage.texture = webcamTexture;
-        rawimage.material.mainTexture = webcamTexture;
+        //rawimage.material.mainTexture = webcamTexture;
 
         webcamTexture.Play();
         data = new Color32[webcamTexture.width * webcamTexture.height];
@@ -71,9 +73,8 @@ public class greenSeeker : MonoBehaviour
 
             if (greenPixelCount > 0)
             {
-                _movegreen.changePosition(webcamTexture.width - avgGreenx / greenPixelCount, avgGreeny / greenPixelCount);
-
-                Debug.Log("Number of Pixels = " + greenPixelCount);
+                _movegreen.changePosition(avgGreenx / greenPixelCount, avgGreeny / greenPixelCount);
+                _moveplayer.changePosition(avgGreenx / greenPixelCount, Screen.width, 3);
             }
         }
     }

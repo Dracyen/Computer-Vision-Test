@@ -16,7 +16,7 @@ public class Player_Move : MonoBehaviour
     float normalvel;
     int TurnVel = 10;
     int normalTurnVel = 10;
-    int gravity = -10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,17 +26,18 @@ public class Player_Move : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
+
     IEnumerator JumpCoolDown()
     {
         yield return new WaitForSeconds(0.2f);
         jump = false;
     }
+
     IEnumerator HitCoolDown()
     {
         yield return new WaitForSeconds(2f);
         TurnVel = normalTurnVel;
     }
-
 
     IEnumerator UpTheSpeed()
     {
@@ -86,23 +87,28 @@ public class Player_Move : MonoBehaviour
         }
         
     }
+
     void MoveRight()
     {
         rb.velocity = new Vector3(normalvel, 0, -TurnVel);
     }
+
     void MoveLeft()
     {
         rb.velocity = new Vector3(normalvel, 0, TurnVel);
     }
+
     void Jump()
     {
         anim.SetTrigger("Jump");
         rb.velocity = new Vector3(normalvel, 15, 0);
     }
+
     void Crouch()
     {
         anim.SetTrigger("Crouch");
     }
+
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger");
@@ -112,6 +118,7 @@ public class Player_Move : MonoBehaviour
         }
         
     }
+
     void OnTriggerExit(Collider other)
     {
         Debug.Log("Trigger");
@@ -127,6 +134,7 @@ public class Player_Move : MonoBehaviour
             anim.SetTrigger("Hit");
         }
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
