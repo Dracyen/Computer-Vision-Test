@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class showCamera : MonoBehaviour {
+public class showCamera : MonoBehaviour
+{
 
     public WebCamTexture webcamTexture;
     public RawImage rawimage;
@@ -26,6 +27,8 @@ public class showCamera : MonoBehaviour {
         webcamTexture.Play();
         data = new Color32[webcamTexture.width * webcamTexture.height];
     }
+
+    //---------------------------------------------------------------------------
 
     //Algorithm 1 (hard coded red and green comparison vals)
 
@@ -217,11 +220,13 @@ public class showCamera : MonoBehaviour {
                 }
             }
 
-            if (redPixelCount > 0) {
+            if (redPixelCount > 0)
+            {
                 _movered.changePosition(avgRedx / redPixelCount, avgRedy / redPixelCount);
             }
 
-            if (greenPixelCount > 0) {
+            if (greenPixelCount > 0)
+            {
                 _movegreen.changePosition(avgGreenx / greenPixelCount, avgGreeny / greenPixelCount);
             }
         }

@@ -6,5 +6,7 @@ public class move : MonoBehaviour {
 
     public void changePosition(int x, int y) {
         transform.position = new Vector2(2 * x, y);
+
+        Debug.Log("Position = " + x + " - " + y);
     }
 }
