@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class greenSeeker : MonoBehaviour
+public class TESTGreenSeeker : MonoBehaviour
 {
 
     public WebCamTexture webcamTexture;
@@ -13,13 +13,12 @@ public class greenSeeker : MonoBehaviour
     public int greenThreshold = 25;
     public int otherThreshold = 35;
 
-    public float TrackSize = 3;
-    public Player_Move _moveplayer;
-
     int avgGreenx = 0;
     int avgGreeny = 0;
 
     int greenPixelCount = 0;
+
+    public JumpAlgo test;
 
     void Start()
     {
@@ -76,8 +75,8 @@ public class greenSeeker : MonoBehaviour
             if (greenPixelCount > 0)
             {
                 _movegreen.changePosition(Screen.width - avgGreenx / greenPixelCount, avgGreeny / greenPixelCount);
-                _moveplayer.changePosition(avgGreenx / greenPixelCount, Screen.width, TrackSize);
-                _moveplayer.Jump(avgGreeny / greenPixelCount);
+
+                test.Jump(avgGreeny / greenPixelCount);
             }
         }
     }

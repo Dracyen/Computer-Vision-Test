@@ -17,7 +17,15 @@ public class Player_Move : MonoBehaviour
     int TurnVel = 10;
     int normalTurnVel = 10;
 
-    // Start is called before the first frame update
+    //Vitor Stuff
+    Vector3 LastPosHor;
+    int lastPos = 0;
+    int currPos;
+    public float velMargin = 0;
+    public Text display;
+    bool readyJump = false;
+
+
     void Start()
     {
         normalvel = inicialVel;
@@ -140,6 +148,60 @@ public class Player_Move : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             jump = true;
+        }
+    }
+
+    public void Jump(int currY)
+    {
+        lastPos = currPos;
+
+        currPos = currY;
+        
+        if(readyJump)
+        {
+            Jump();
+            display.text = "Jump";
+            readyJump = false;
+        }
+        else
+        {
+            if (currPos > lastPos)
+            {
+                display.text = "Up";
+
+                if (currPos - lastPos > velMargin)
+                {
+                    display.text = "Fast Up";
+                    readyJump = true;
+                }
+            }
+        }
+    }
+
+    public void changePosition(int currZ, int sWidth, float rWidth)
+    {
+        float position = currZ * rWidth / sWidth;
+
+        LastPosHor = transform.position;
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, position);
+
+        if (LastPosHor.z > transform.position.z)
+        {
+            anim.SetBool("TurnL", false);
+            anim.SetBool("TurnR", true);
+        }
+
+        if (LastPosHor.z < transform.position.z)
+        {
+            anim.SetBool("TurnL", true);
+            anim.SetBool("TurnR", false);
+        }
+
+        if (LastPosHor.z == transform.position.z)
+        {
+            anim.SetBool("TurnL", false);
+            anim.SetBool("TurnR", false);
         }
     }
 }
