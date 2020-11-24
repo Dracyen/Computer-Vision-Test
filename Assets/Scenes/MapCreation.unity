@@ -5042,6 +5042,7 @@ MonoBehaviour:
   - {fileID: 7175124194476946396, guid: 7f771956a55c0924ab2f0d1691f5da58, type: 3}
   - {fileID: 7175124194476946396, guid: 7f771956a55c0924ab2f0d1691f5da58, type: 3}
   - {fileID: 1210352780791718998, guid: 9a73ebc3b4e290d40b7f954627bbb826, type: 3}
+  - {fileID: 7439515554049029063, guid: 47e8b8d9a3b2983498e5055a17af0b0e, type: 3}
   Player: {fileID: 725275636}
   offset: 1.8
 --- !u!4 &459064825
