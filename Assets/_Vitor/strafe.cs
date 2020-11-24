@@ -17,18 +17,18 @@ public class strafe : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, position);
         if(LastPos.z > transform.position.z)
         {
-            anim.SetBool("TurnR", false);
-            anim.SetBool("TurnL", true);
+            anim.SetBool("TurnL", false);
+            anim.SetBool("TurnR", true);
         }
         if (LastPos.z < transform.position.z)
         {
-            anim.SetBool("TurnR", true);
-            anim.SetBool("TurnL", false);
+            anim.SetBool("TurnL", true);
+            anim.SetBool("TurnR", false);
         }
         if (LastPos.z == transform.position.z)
         {
-            anim.SetBool("TurnR", false);
             anim.SetBool("TurnL", false);
+            anim.SetBool("TurnR", false);
         }
     }
 }

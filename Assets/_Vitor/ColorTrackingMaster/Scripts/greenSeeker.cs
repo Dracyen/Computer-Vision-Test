@@ -30,7 +30,7 @@ public class greenSeeker : MonoBehaviour
             print("Webcam available: " + devices[i].name);
         }
 
-        webcamTexture = new WebCamTexture(devices[0].name, 1024, 768);
+        webcamTexture = new WebCamTexture(devices[0].name, 800, 600);
         webcamTexture.requestedFPS = 30;
         rawimage.texture = webcamTexture;
         //rawimage.material.mainTexture = webcamTexture;
