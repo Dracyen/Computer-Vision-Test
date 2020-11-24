@@ -8,6 +8,6 @@ public class strafe : MonoBehaviour
     {
         float position = currZ * rWidth / sWidth;
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, position * 4);
+        transform.position = new Vector3(transform.position.x, transform.position.y, position);
     }
 }

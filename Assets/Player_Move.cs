@@ -121,7 +121,7 @@ public class Player_Move : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
         if (other.tag == "Destroyer")
         {
             Hit = false;

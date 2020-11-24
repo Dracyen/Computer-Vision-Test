@@ -5043,7 +5043,7 @@ MonoBehaviour:
   - {fileID: 7175124194476946396, guid: 7f771956a55c0924ab2f0d1691f5da58, type: 3}
   - {fileID: 1210352780791718998, guid: 9a73ebc3b4e290d40b7f954627bbb826, type: 3}
   Player: {fileID: 725275636}
-  offset: 1.5
+  offset: 1.8
 --- !u!4 &459064825
 Transform:
   m_ObjectHideFlags: 0
@@ -5650,6 +5650,7 @@ MonoBehaviour:
   _movegreen: {fileID: 1384439622}
   greenThreshold: 25
   otherThreshold: 35
+  TrackSize: 3.75
   _moveplayer: {fileID: 725275645}
 --- !u!114 &725275645
 MonoBehaviour:
@@ -5974,7 +5975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1384439621
 RectTransform:
   m_ObjectHideFlags: 0

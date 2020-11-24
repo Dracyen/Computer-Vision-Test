@@ -13,6 +13,7 @@ public class greenSeeker : MonoBehaviour
     public int greenThreshold = 25;
     public int otherThreshold = 35;
 
+    public float TrackSize = 3;
     public strafe _moveplayer;
 
     int avgGreenx = 0;
@@ -29,7 +30,8 @@ public class greenSeeker : MonoBehaviour
             print("Webcam available: " + devices[i].name);
         }
 
-        webcamTexture = new WebCamTexture(devices[0].name, 300, 200);
+        webcamTexture = new WebCamTexture(devices[0].name, 1024, 768);
+        webcamTexture.requestedFPS = 30;
         rawimage.texture = webcamTexture;
         //rawimage.material.mainTexture = webcamTexture;
 
@@ -56,8 +58,8 @@ public class greenSeeker : MonoBehaviour
                     {
                         if(data[x + y * webcamTexture.width].r < data[x + y * webcamTexture.width].g - otherThreshold && data[x + y * webcamTexture.width].b < data[x + y * webcamTexture.width].g - otherThreshold)
                         {
-                            avgGreenx += x;
-                            avgGreeny += y;
+                            avgGreenx += Screen.width * x / webcamTexture.width;
+                            avgGreeny += Screen.height * y / webcamTexture.height;
 
                             greenPixelCount += 1;
 
@@ -73,8 +75,8 @@ public class greenSeeker : MonoBehaviour
 
             if (greenPixelCount > 0)
             {
-                _movegreen.changePosition(avgGreenx / greenPixelCount, avgGreeny / greenPixelCount);
-                _moveplayer.changePosition(avgGreenx / greenPixelCount, Screen.width, 3);
+                _movegreen.changePosition(Screen.width - avgGreenx / greenPixelCount, avgGreeny / greenPixelCount);
+                _moveplayer.changePosition(avgGreenx / greenPixelCount, Screen.width, TrackSize);
             }
         }
     }

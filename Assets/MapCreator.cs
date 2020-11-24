@@ -46,7 +46,7 @@ public class MapCreator : MonoBehaviour
 
     void Rebuild()
     {
-        Debug.Log("Player");
+        //Debug.Log("Player");
         instantiatePos = instantiatePos + new Vector3(30, 0, 0);
         Destroy(backRoad);
         backRoad = middleRoad;
