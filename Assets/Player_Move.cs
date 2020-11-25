@@ -24,6 +24,7 @@ public class Player_Move : MonoBehaviour
     public float velMargin = 0;
     public Text display;
     bool readyJump = false;
+    bool readyCrouch = false;
 
 
     void Start()
@@ -119,7 +120,7 @@ public class Player_Move : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
         if (other.tag == "Destroyer")
         {
             Hit = true;
@@ -151,30 +152,39 @@ public class Player_Move : MonoBehaviour
         }
     }
 
-    public void Jump(int currY)
+    public void ScreenPosition(int currY, int height)
     {
         lastPos = currPos;
 
         currPos = currY;
-        
-        if(readyJump)
+
+        float topMargin = 1f - (velMargin * 0.01f);
+
+        float botMargin = velMargin * 0.01f;
+
+        if (currPos > height * topMargin)
         {
-            Jump();
-            display.text = "Jump";
-            readyJump = false;
+            display.text = "Up";
+            if(!readyJump)
+            {
+                Jump();
+                readyJump = true;
+            }
+        }
+        else if(currPos < height * botMargin)
+        {
+            display.text = "Down";
+            if (!readyCrouch)
+            {
+                Crouch();
+                readyCrouch = true;
+            }
         }
         else
         {
-            if (currPos > lastPos)
-            {
-                display.text = "Up";
-
-                if (currPos - lastPos > velMargin)
-                {
-                    display.text = "Fast Up";
-                    readyJump = true;
-                }
-            }
+            display.text = "Neutral";
+            readyJump = false;
+            readyCrouch = false;
         }
     }
 
@@ -202,6 +212,63 @@ public class Player_Move : MonoBehaviour
         {
             anim.SetBool("TurnL", false);
             anim.SetBool("TurnR", false);
+        }
+    }
+
+    //Deprecated
+
+    public void JumpOrCrouch(int currY)
+    {
+        lastPos = currPos;
+
+        currPos = currY;
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false)
+        {
+            if (readyJump)
+            {
+                Jump();
+                display.text = "Jump";
+                readyJump = false;
+            }
+            else
+            {
+                if (currPos > lastPos)
+                {
+                    display.text = "Up";
+
+                    if (currPos - lastPos > velMargin)
+                    {
+                        display.text = "Fast Up";
+                        readyJump = true;
+                    }
+                }
+            }
+        }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Crouch") == false)
+        {
+            if (readyCrouch)
+            {
+                Crouch();
+                display.text = "Crouch";
+                readyCrouch = false;
+            }
+            else
+            {
+                if (currPos < lastPos)
+                {
+                    display.text = "Down";
+
+                    Debug.Log("Pos: " + (currPos - lastPos));
+
+                    if (lastPos - currPos > velMargin)
+                    {
+                        display.text = "Fast Down";
+                        readyCrouch = true;
+                    }
+                }
+            }
         }
     }
 }
