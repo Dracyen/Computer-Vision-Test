@@ -94,9 +94,9 @@ public class HUESeeker : MonoBehaviour
                     {
                         spotCount = 0;
 
-                        for(int j = x - 1; j < x + 2; j++)
+                        for(int j = x - 1; j < x + 10; j++)
                         {
-                            for (int k = y - 1; k < y + 2; k++)
+                            for (int k = y - 1; k < y + 10; k++)
                             {
                                 if (tH + hueThreshold > H && H > tH - hueThreshold)
                                 {
